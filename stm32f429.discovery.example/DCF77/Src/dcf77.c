@@ -4,31 +4,31 @@
   * @author  Maxim Enbaev
   * @version V2.0
   * @date    27-September-2015
-  * @brief   This file provides dcf77 signal reception library for STM32F4 microcontrollers
+  * @brief   This file provides DCF77 signal reception library for STM32F4 microcontrollers
   ******************************************************************************
   * @attention
-  *
-  * The MIT License (MIT)
-  *  
-  * Copyright (c) 2015 Maxim Enbaev
   * 
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the "Software"), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
+  * Copyright (c) 2015 Maxim Enbaev emax@cosmostat.com
   * 
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
+  * This work is licensed under a Creative Commons
+  * Attribution-NonCommercial 4.0 International License
   * 
-  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.*
+  * CC BY-NC 4.0
+  * 
+  * http://creativecommons.org/licenses/by-nc/4.0/
+  * 
+  * You are free to:
+  * Share — copy and redistribute the material in any medium or format
+  * Adapt — remix, transform, and build upon the material
+  * 
+  * Under the following terms:
+  * Attribution — You must give appropriate credit,
+  * provide a link to the license, and indicate if changes were made.
+  * You may do so in any reasonable manner, but not in any way that suggests
+  * the licensor endorses you or your use.
+  * NonCommercial — You may not use the material for commercial purposes
+  * without permission from the author.
+  * 
   ******************************************************************************
   */
 
@@ -301,29 +301,27 @@ static int getDigits(dcf77buffer_t buf, int i0, int in) {
 }
 
 #define CANDIDATES_LEN 60
+#define CANDIDATES_GOOD 3
 static time2_t candidate[CANDIDATES_LEN] = { 0 };	// Quene of candidates to good time
 static int candidateI = 0;
 
 static bool compareCandidates(time2_t time_sec) {
-	char res = false;
+	int good = 1;
 	int i;
 	if (time_sec) {
-		if (time_sec == dcf77timeOk) res = true;
+		if (time_sec == dcf77timeOk) good = CANDIDATES_GOOD;
 		else {
 			for (i = 0; i < CANDIDATES_LEN; i++) {
-				if (candidate[i]) {
-					if (candidate[i] == time_sec) {
-						res = true;
-						break;
-					}
-				} else 	break;
+				if (candidate[i] && candidate[i] == time_sec) {
+					if (++good >= CANDIDATES_GOOD) break;
+				}
 			}
 		}
 		//Increment candidates quene
 		candidate[candidateI] = time_sec;
 		candidateI = (candidateI + 1) % CANDIDATES_LEN;
 	}	
-	return res;
+	return good >= CANDIDATES_GOOD;
 }
 
 static int lastOkSec = 0; // System time of last received time
@@ -366,9 +364,9 @@ inline static void calculateMSecPerDay(time2_t dcf77sec, int dcf77msec) {
 		time2msSub(&now77, &yesterday77, &diff77);
 		time2msSub(&nowS, &yesterdayS, &diffS);
 		time2msSub(&diffS, &diff77, &diffMs);
-		if (diff77.sSec > DCF77_MSEC_PER_DAY_MAXIMUM) {
+		if (diffMs.sSec > DCF77_MSEC_PER_DAY_MAXIMUM) {
 			dcf77msec_per_day = DCF77_MSEC_PER_DAY_MAXIMUM; 
-		} else if (diff77.sSec < -DCF77_MSEC_PER_DAY_MAXIMUM) {
+		} else if (diffMs.sSec < -DCF77_MSEC_PER_DAY_MAXIMUM) {
 			dcf77msec_per_day = -DCF77_MSEC_PER_DAY_MAXIMUM; 
 		} else {
 			msec = diffMs.sSec * 1000 + diffMs.msec;
