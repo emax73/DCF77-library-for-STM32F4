@@ -71,6 +71,10 @@ void loMSTick(void) {
 	GUI_DispStringAt(str, x, y);
 	y += dy;
 
+	sprintf(str, "Time received last daynight: %s       ", dcf77received?"yes":"no");
+	GUI_DispStringAt(str, x, y);
+	y += dy;
+
 	sprintf(str, "Level: %i %%      ", dcf77levelPercent);
 	GUI_DispStringAt(str, x, y);
 	y += dy;
@@ -127,9 +131,9 @@ void loMSTick(void) {
 	//GUI_DispStringAt(str, x, y);
 	//y += dy;
 
-	sprintf(str, "Sec processed: %i us     ", dcf77secUs);
-	GUI_DispStringAt(str, x, y);
-	y += dy;
+	//sprintf(str, "Sec processed: %i us     ", dcf77secUs);
+	//GUI_DispStringAt(str, x, y);
+	//y += dy;
 
 	sprintf(str, "Min processed: %i us     ", dcf77minUs);
 	GUI_DispStringAt(str, x, y);

@@ -641,6 +641,8 @@ inline static void candidatesInc() {
 		}
 }
 
+bool dcf77received = false; //True if DCF77 had received in last daynight
+
 inline static void incrementSec(void) {
 		candidatesInc();
 
@@ -649,6 +651,12 @@ inline static void incrementSec(void) {
 			dcf77timeOk_msec = 0;
 			struct tm * timeOk_tm = localtime2(&dcf77timeOk);
 			memcpy(&dcf77timeOk_tm, timeOk_tm, sizeof(dcf77timeOk_tm));
+		}
+		if (lastOkSec) {
+			int nowSec = timeS.sec;
+			int period = nowSec - lastOkSec;
+			if (period <= DCF77_RECEIVED) dcf77received = true;
+			else dcf77received = false;
 		}
 		if (timeReceived) {
 			timeReceivedLong = true;
