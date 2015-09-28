@@ -7,12 +7,12 @@ but require significantly cpu power (140 uS @ 168 MHz)
   * @file    dcf77.c
   * @author  Maxim Enbaev
   * @version V2.0
-  * @date    27-September-2015
+  * @date    28-September-2015
   * @brief   This file provides DCF77 signal reception library for STM32F4 microcontrollers
   ******************************************************************************
   * @attention
   * 
-  * Copyright (c) 2015 Maxim Enbaev emax@cosmostat.com
+  * Copyright (c) 2015 Maxim Enbaev emax(at)cosmostat.com
   * 
   * This work is licensed under a Creative Commons
   * Attribution-NonCommercial 4.0 International License
