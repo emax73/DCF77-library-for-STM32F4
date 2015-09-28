@@ -12,7 +12,7 @@ but require significantly cpu power (140 uS @ 168 MHz)
   ******************************************************************************
   * @attention
   * 
-  * Copyright (c) 2015 Maxim Enbaev emax(at)cosmostat.com
+  * Copyright (c) 2015 Maxim Enbaev emax@cosmostat.com
   * 
   * This work is licensed under a Creative Commons
   * Attribution-NonCommercial 4.0 International License
