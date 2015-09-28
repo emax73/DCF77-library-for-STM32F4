@@ -3,7 +3,7 @@
   * @file    dcf77.h
   * @author  Maxim Enbaev
   * @version V2.0
-  * @date    27-September-2015
+  * @date    28-September-2015
   * @brief   This file provides header of dcf77 signal reception library for STM32F4 microcontrollers
   ******************************************************************************
   * @attention
