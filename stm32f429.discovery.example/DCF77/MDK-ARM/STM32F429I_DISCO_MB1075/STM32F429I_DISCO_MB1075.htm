@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F429I_DISCO_MB1075\STM32F429I_DISCO_MB1075.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F429I_DISCO_MB1075\STM32F429I_DISCO_MB1075.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Mon Sep 28 10:17:59 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Sat Oct 03 11:37:47 2015
 <BR><P>
 <H3>Maximum Stack Usage =        552 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -3194,7 +3194,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[263]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dcf77work
 </UL>
 
-<P><STRONG><a name="[25e]"></a>dcf77msTask</STRONG> (Thumb, 364 bytes, Stack size 40 bytes, dcf77.o(i.dcf77msTask))
+<P><STRONG><a name="[25e]"></a>dcf77msTask</STRONG> (Thumb, 388 bytes, Stack size 40 bytes, dcf77.o(i.dcf77msTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = dcf77msTask &rArr; getBit &rArr; decodeBuf &rArr; calculateMSecPerDay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dcf77timeReceived
@@ -3279,10 +3279,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[177]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_X_Config
 </UL>
 
-<P><STRONG><a name="[1fc]"></a>loMSTick</STRONG> (Thumb, 502 bytes, Stack size 280 bytes, dfc_main.o(i.loMSTick))
+<P><STRONG><a name="[1fc]"></a>loMSTick</STRONG> (Thumb, 536 bytes, Stack size 280 bytes, dfc_main.o(i.loMSTick))
 <BR><BR>[Stack]<UL><LI>Max Depth = 480<LI>Call Chain = loMSTick &rArr; GUI_DispStringAt &rArr; GUI_DispString &rArr; GUI__DispLine &rArr; WM__InitIVRSearch &rArr; WM__GetNextIVR &rArr; WM__ActivateClipRect &rArr; _SetClipRectUserIntersect &rArr; LCD_SetClipRectEx &rArr; GUI__IntersectRects
 </UL>
 <BR>[Calls]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_DispStringAt
+<LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;localtime2
 <LI><a href="#[26e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_IRQHandler
@@ -3291,7 +3292,8 @@ Global Symbols
 <P><STRONG><a name="[261]"></a>localtime2</STRONG> (Thumb, 280 bytes, Stack size 8 bytes, time2.o(i.localtime2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = localtime2
 </UL>
-<BR>[Called By]<UL><LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dcf77msTask
+<BR>[Called By]<UL><LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;loMSTick
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dcf77msTask
 <LI><a href="#[268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decodeBuf
 </UL>
 

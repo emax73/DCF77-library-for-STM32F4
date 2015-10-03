@@ -63,7 +63,7 @@ extern time2_t dcf77timeOkReceived; // Time of ok receiving DCF77 signal
 
 extern struct tm dcf77timeOk_tm;
 
-#define DCF77_RECEIVED (24 * 60 * 60) //Period for received signal in sec
+#define DCF77_RECEIVED (30 * 60 * 60) //Period for received signal in sec
 extern bool dcf77received; //True if DCF77 had received in last daynight
 
 #define DCF77_MSEC_PER_DAY_UNKNOWN -100001

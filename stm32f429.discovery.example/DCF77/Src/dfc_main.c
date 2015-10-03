@@ -71,10 +71,20 @@ void loMSTick(void) {
 	GUI_DispStringAt(str, x, y);
 	y += dy;
 
-	sprintf(str, "Time received last daynight: %s       ", dcf77received?"yes":"no");
+	struct tm * rec;
+	rec = localtime2(&dcf77timeOkReceived);
+	if (dcf77timeOkReceived) {
+		sprintf(str, "Last received: %02i:%02i %02i     ", rec->tm_hour, rec->tm_min, rec->tm_mday);
+	} else {
+		sprintf(str, "Last received: no     ");
+	}
 	GUI_DispStringAt(str, x, y);
 	y += dy;
 
+	sprintf(str, "Time received last day: %s       ", dcf77received?"yes":"no");
+	GUI_DispStringAt(str, x, y);
+	y += dy;
+		
 	sprintf(str, "Level: %i %%      ", dcf77levelPercent);
 	GUI_DispStringAt(str, x, y);
 	y += dy;
@@ -103,10 +113,11 @@ void loMSTick(void) {
 	GUI_DispStringAt(str, x, y);
 	y += dy;
 
-	sprintf(str, "Last good night: %i      ", last_good_night);
+	/*sprintf(str, "Last good night: %i      ", last_good_night);
 	GUI_DispStringAt(str, x, y);
 	y += dy;
-
+	*/
+	
 	sprintf(str, "All results: %i      ", dcf77testCnt);
 	GUI_DispStringAt(str, x, y);
 	y += dy;

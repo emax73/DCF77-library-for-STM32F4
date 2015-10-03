@@ -12,7 +12,7 @@ extern int ms_msec, ms_phase;
 extern int ms_msecPerDay; // msec +- correction per daynight 
 #define MS_PER_DAY 86400000 // msec per daynight
 
-#define MS_PER_DAY_CORRECTION -5933 // ms per daynight correction
+#define MS_PER_DAY_CORRECTION -6041 // ms per daynight correction
 
 extern void msInit(int hiKHz, int loMS); // msInit hiKHz - ms/phases timer, loMS - lo N ms timer;
 extern void hiMSTick(void);
